@@ -1,3 +1,4 @@
+import os
 import logging
 from telegram import Update
 from telegram.error import TelegramError
@@ -35,7 +36,7 @@ async def send_scheduled_message(update: Update, context: ContextTypes.DEFAULT_T
 
 if __name__ == "__main__":
     # Application object (the bot itself)
-    application = ApplicationBuilder().token("7288371310:AAHPhYtm0tHfVLoILkQu6yRBGW6D4uVEbdc").build()
+    application = ApplicationBuilder().token(os.getenv("API_KEY").build()
 
     # Create command handlers with the commands and callback functions
     start_handler = CommandHandler("start", start)
