@@ -16,33 +16,27 @@ logging.basicConfig(
 )
 
 
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def greeting(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(
         chat_id=update.effective_chat.id,
-        text="Hi, I'm the bot from Fiverr, nice to meet you!"
+        text="Hi, I'm the bot from ChatInsight, nice to meet you!"
     )
-
-async def send_scheduled_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    try:
-       await context.bot.send_message(
-           chat_id=update.effective_chat.id,
-            text="This is a scheduled post!"
-       )
-       print("Scheduled message sent successfully.")
-
-    except TelegramError as e:
-        print(f"Error occured: {e}")
 
 
 if __name__ == "__main__":
     # Application object (the bot itself)
-    application = ApplicationBuilder().token(os.getenv("API_KEY")).build()
+    application = ApplicationBuilder().token(
+        os.getenv(
+            "API_KEY", 
+            "7288371310:AAHPhYtm0tHfVLoILkQu6yRBGW6D4uVEbdc"
+        )
+    ).build()
 
     # Create command handlers with the commands and callback functions
-    start_handler = CommandHandler("start", start)
+    greeting_handler = CommandHandler("hello", greeting)
 
     # Register the handlers
-    application.add_handler(start_handler)
+    application.add_handler(greeting_handler)
 
     # Start the bot until CTRL+C is hit
     application.run_polling()
